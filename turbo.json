@@ -30,6 +30,16 @@
     "db:studio": {
       "cache": false,
       "persistent": true
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "env": ["DATABASE_URL", "ANTHROPIC_API_KEY"]
+    },
+    "eval": {
+      "cache": false,
+      "persistent": false,
+      "env": ["DATABASE_URL", "ANTHROPIC_API_KEY"]
     }
   }
 }

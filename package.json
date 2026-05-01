@@ -32,7 +32,9 @@
     "db:push": "turbo -F @test-evals/db db:push",
     "db:studio": "turbo -F @test-evals/db db:studio",
     "db:generate": "turbo -F @test-evals/db db:generate",
-    "db:migrate": "turbo -F @test-evals/db db:migrate"
+    "db:migrate": "turbo -F @test-evals/db db:migrate",
+    "test": "turbo test",
+    "eval": "turbo -F server eval -- "
   },
   "dependencies": {
     "@test-evals/env": "workspace:*",
