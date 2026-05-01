@@ -31,8 +31,7 @@ function getTokenStats(response: Anthropic.Messages.Message): TokenStats {
     cache_creation_input_tokens?: number | null;
     cache_read_input_tokens?: number | null;
   };
-  // DEBUG: remove after confirming cache behaviour
-  console.debug("[cache-debug] usage:", JSON.stringify(response.usage));
+
   return {
     inputTokens: usage.input_tokens,
     outputTokens: usage.output_tokens,
@@ -56,13 +55,6 @@ export async function runExtractionWithRetry(
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     const snapshotMessages = [...messages];
-
-    // const toolWithCache = { ...SUBMIT_EXTRACTION_TOOL, cache_control: { type: "ephemeral" as const } };
-    // DEBUG: verify cache_control is present in outgoing request
-    // if (attempt === 1) {
-    //   console.debug("[cache-debug] tool cache_control:", JSON.stringify(toolWithCache.cache_control));
-    //   console.debug("[cache-debug] system[0] cache_control:", JSON.stringify(systemBlocks[0]?.cache_control));
-    // }
 
     const response = await withBackoff(() =>
       client.messages.create({
